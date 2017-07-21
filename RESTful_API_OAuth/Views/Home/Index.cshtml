@@ -1,0 +1,57 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h2>取OAuth認證Token</h2>
+        <p>POST /token</p>
+        <p>Headers : </p>
+        <pre>
+            {
+                "Content-Type" : "application/x-www-form-urlencoded"
+            }
+        </pre>
+        <p>Body : </p>
+        <pre>
+            { 
+                "grant_type" : "password", 
+                "username" : "{username}",
+                "password" : "{password}"
+            }
+        </pre>
+        <p>return :</p>
+        <pre>
+            {
+                "access_token": "{token}",
+                "token_type": "bearer",
+                "expires_in": 1800
+            }
+        </pre>
+    </div>
+    <div class="col-md-12">
+        <h2>使用token取得個人資料</h2>
+        <p>GET api/UserSelf</p>
+        <p>Headers : </p>
+        <pre>
+            {
+                "Authorization" : "bearer {token}"
+            }
+        </pre>
+        <p>return : </p>
+        <pre>
+            {
+                "Id": "{Id}",
+                "Email": "{Email}",
+                "Username": "{Username}",
+                "Password": "{Password}",
+                "Name": "{Name}",
+                "PhoneNumber": "{PhoneNumber}",
+                "EditTime": "{EditTime}",
+                "RoleName": "{RoleName}",
+                "StatusName": "{StatusName}"
+            }
+        </pre>
+    </div>
+</div>
+<div class="jumbotron">
+    <p class="lead">介紹 - 在下方連結提供API的說明</p>
+    <p>使用者、權限、使用者狀態 WebAPI</p>
+    <p><a href="~/Help" class="btn btn-primary btn-lg">API Help &raquo;</a></p>
+</div>
