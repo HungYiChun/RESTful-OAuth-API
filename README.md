@@ -1,6 +1,6 @@
 First
 You need to build the DB chart as shown below
-![image] User_design.png
+![image] https://github.com/HungYiChun/RESTful-OAuth-API/blob/master/User_design.png?raw=true
 
 Second
 Compiled via Visual Studio
