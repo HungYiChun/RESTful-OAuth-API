@@ -5,7 +5,10 @@ You need to build the DB chart as shown below
 Second
 Compiled via Visual Studio
 
-取OAuth認證Token
+
+Use POSTMAN to verify
+
+Get OAuth authentication Token:
 POST /token
 
 Headers :
@@ -30,7 +33,7 @@ return :
                 "expires_in": 1800
             }
         
-使用token取得個人資料
+Use token to get your profile:
 GET api/UserSelf
 
 Headers :
@@ -53,3 +56,5 @@ return :
                 "StatusName": "{StatusName}"
             }
         
+        
+More APIs at / Help
