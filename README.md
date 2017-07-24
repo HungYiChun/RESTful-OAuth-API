@@ -1,3 +1,10 @@
+First
+You need to build the DB chart as shown below
+![image] User_design.png
+
+Second
+Compiled via Visual Studio
+
 取OAuth認證Token
 POST /token
 
