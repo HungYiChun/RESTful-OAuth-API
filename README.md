@@ -1,9 +1,21 @@
 First
-You need to build the DB chart as shown below
-![image](https://github.com/HungYiChun/RESTful-OAuth-API/blob/master/User_design.png?raw=true)
+git clone this project.
 
 Second
-Compiled via Visual Studio
+run this project by Visual studio (build vs2015).
+
+HomePage:
+![image](https://github.com/HungYiChun/RESTful-OAuth-API/blob/master/RESTful_API_Homepage.png?raw=true)
+
+DB Design:
+![image](https://github.com/HungYiChun/RESTful-OAuth-API/blob/master/DB_Design.png?raw=true)
+
+Postman Result:
+![image](https://github.com/HungYiChun/RESTful-OAuth-API/blob/master/Postman_result.png?raw=true)
+
+PS:
+First time POST will automatically create Database, So it takes a little time.
+
 
 
 Use POSTMAN to verify
