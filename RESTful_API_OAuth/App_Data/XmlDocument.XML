@@ -601,19 +601,9 @@
             取得字串 - Get string["value1", "value2"].
             </summary>
         </member>
-        <member name="M:RESTful_API_OAuth.Controllers.ValuesController.GetRAdmin">
-            <summary>
-            限Root Admin權限執行 - Root Admin privilege execution.
-            </summary>
-        </member>
         <member name="M:RESTful_API_OAuth.Controllers.ValuesController.GetAdmin">
             <summary>
             限Admin權限執行 - Admin privilege execution.
-            </summary>
-        </member>
-        <member name="M:RESTful_API_OAuth.Controllers.ValuesController.GetROAdmin">
-            <summary>
-            限Read-only Admin權限執行 - Read-only Admin privilege execution.
             </summary>
         </member>
         <member name="M:RESTful_API_OAuth.Controllers.ValuesController.GetMember">

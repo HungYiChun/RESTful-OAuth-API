@@ -25,23 +25,6 @@ namespace RESTful_API_OAuth.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/Value/RootAdmin
-        /// <summary>
-        /// 限Root Admin權限執行 - Root Admin privilege execution.
-        /// </summary>
-        [HttpGet]
-        [Authorize(Roles = "Root Admin")]
-        [Route("api/Value/RootAdmin")]
-        public IHttpActionResult GetRAdmin()
-        {
-            ClaimsIdentity identity = (ClaimsIdentity)User.Identity;
-            string Name = IE.GetName(identity);
-            string Role = IE.GetRole(identity);
-            string StatusName = IE.GetType(identity, "StatusName");
-
-            return Ok("Hello, " + Name + ", 您的權限是 " + Role + "使用狀態 : " + StatusName);
-        }
-
         // GET api/Value/Admin
         /// <summary>
         /// 限Admin權限執行 - Admin privilege execution.
@@ -50,23 +33,6 @@ namespace RESTful_API_OAuth.Controllers
         [Authorize(Roles = "Admin")]
         [Route("api/Value/Admin")]
         public IHttpActionResult GetAdmin()
-        {
-            ClaimsIdentity identity = (ClaimsIdentity)User.Identity;
-            string Name = IE.GetName(identity);
-            string Role = IE.GetRole(identity);
-            string StatusName = IE.GetType(identity, "StatusName");
-
-            return Ok("Hello, " + Name + ", 您的權限是 " + Role + "使用狀態 : " + StatusName);
-        }
-
-        // GET api/Value/Read-only Admin
-        /// <summary>
-        /// 限Read-only Admin權限執行 - Read-only Admin privilege execution.
-        /// </summary>
-        [HttpGet]
-        [Authorize(Roles = "Read-only Admin")]
-        [Route("api/Value/Read-only Admin")]
-        public IHttpActionResult GetROAdmin()
         {
             ClaimsIdentity identity = (ClaimsIdentity)User.Identity;
             string Name = IE.GetName(identity);

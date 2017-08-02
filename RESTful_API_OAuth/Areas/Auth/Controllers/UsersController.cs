@@ -18,17 +18,23 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
     public class UsersController : ApiController
     {
         private int STATUS_INREVIEW = 2;  //審查中
-        private MLMDBEntities db = new MLMDBEntities();
+        private RESTful_API_DB_Model db = new RESTful_API_DB_Model();
         private IdentityExtensions IE = new IdentityExtensions();
 
         // GET: api/Users
         /// <summary>
         /// 取得 所有 使用者資料 - All User Detail.
         /// </summary>
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IQueryable<ViewUserDetail> GetUsers()
         {
-            return db.ViewUserDetail;
+            string sqlquery = @"SELECT          U.Id, U.Email, U.Username, U.Password, U.Name, U.PhoneNumber, U.EditTime, R.RoleName, S.StatusName
+                                FROM            dbo.Users AS U INNER JOIN
+                                                dbo.Roles AS R ON R.Id = U.Roles_Id INNER JOIN
+                                                dbo.Status AS S ON S.Id = U.Status_Id";
+            IQueryable<ViewUserDetail> usersList = (IQueryable<ViewUserDetail>)db.Database.SqlQuery<ViewUserDetail>(sqlquery);
+
+            return usersList;
         }
 
         // GET: api/Users/5
@@ -36,10 +42,17 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         /// 取得 指定 使用者資料 - Users Detail.
         /// </summary>
         [ResponseType(typeof(Users))]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult GetUsers(string id)
         {
-            ViewUserDetail viewUserDetail = db.ViewUserDetail.FirstOrDefault(x => x.Id == id);
+            string sqlquery = @"SELECT          U.Id, U.Email, U.Username, U.Password, U.Name, U.PhoneNumber, U.EditTime, R.RoleName, S.StatusName
+                                FROM            dbo.Users AS U INNER JOIN
+                                                dbo.Roles AS R ON R.Id = U.Roles_Id INNER JOIN
+                                                dbo.Status AS S ON S.Id = U.Status_Id
+                                WHERE           Id = {0}";
+            ViewUserDetail viewUserDetail = db.Database.SqlQuery<ViewUserDetail>(sqlquery, id).First();
+            //ViewUserDetail viewUserDetail = db.ViewUserDetail.FirstOrDefault(x => x.Id == id);
+
             if (viewUserDetail == null)
             {
                 return NotFound();
@@ -60,7 +73,14 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
             ClaimsIdentity identity = (ClaimsIdentity)User.Identity;
             string Id = IE.GetNameIdentifier(identity);
 
-            ViewUserDetail viewUserDetail = db.ViewUserDetail.FirstOrDefault(x => x.Id == Id);
+            string sqlquery = @"SELECT          U.Id, U.Email, U.Username, U.Password, U.Name, U.PhoneNumber, U.EditTime, R.RoleName, S.StatusName
+                                FROM            dbo.Users AS U INNER JOIN
+                                                dbo.Roles AS R ON R.Id = U.Roles_Id INNER JOIN
+                                                dbo.Status AS S ON S.Id = U.Status_Id
+                                WHERE           Id = {0}";
+            ViewUserDetail viewUserDetail = db.Database.SqlQuery<ViewUserDetail>(sqlquery, Id).First();
+            //ViewUserDetail viewUserDetail = db.ViewUserDetail.FirstOrDefault(x => x.Id == Id);
+
             if (viewUserDetail == null)
             {
                 return NotFound();
@@ -76,7 +96,7 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         /// Admin新增 使用者資料 - Admin Create User.
         /// </summary>
         [ResponseType(typeof(Users))]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         [Route("api/Users/{roleId:int}/{statusId:int}")]
         public IHttpActionResult PostAdminUsers(Users users, int roleId, int statusId)
         {
@@ -172,7 +192,7 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         /// 更新 使用者資料 - Update User.
         /// </summary>
         [ResponseType(typeof(Users))]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult PutUsers(string id, Users users)
         {
             if (!ModelState.IsValid)
@@ -212,7 +232,7 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         /// 更新 使用者權限 - Update UserRole.
         /// </summary>
         [HttpPut]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         [Route("api/UserRole/{userId}/{roleId:int}")]
         public IHttpActionResult PutUserRole(string userId, int roleId)
         {
@@ -252,7 +272,7 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         /// 更新 使用者狀態 - Update UserStatus.
         /// </summary>
         [HttpPut]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         [Route("api/UserStatus/{userId}/{statusId:int}")]
         public IHttpActionResult PutUserStatus(string userId, int statusId)
         {
@@ -294,7 +314,7 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         /// 刪除 使用者資料 - Delete User.
         /// </summary>
         [ResponseType(typeof(Users))]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteUsers(string id)
         {
             Users users = db.Users.Find(id);

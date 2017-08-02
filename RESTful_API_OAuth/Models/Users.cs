@@ -21,7 +21,7 @@ namespace RESTful_API_OAuth.Models
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public System.DateTime EditTime { get; set; }
-    
+
         public virtual Roles Roles { get; set; }
         public virtual Status Status { get; set; }
     }

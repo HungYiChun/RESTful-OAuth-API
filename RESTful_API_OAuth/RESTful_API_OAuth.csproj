@@ -243,39 +243,23 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708020429304_InitRESTful_API_DB.cs" />
+    <Compile Include="Migrations\201708020429304_InitRESTful_API_DB.Designer.cs">
+      <DependentUpon>201708020429304_InitRESTful_API_DB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityExtensions.cs" />
-    <Compile Include="Models\MLMDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MLMDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MLMDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MLMDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MLMDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MLMDB.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\InitDatabase.cs" />
     <Compile Include="Models\Partials\Roles.cs" />
     <Compile Include="Models\Partials\Status.cs" />
     <Compile Include="Models\Partials\Users.cs" />
     <Compile Include="Models\Partials\ViewUserDetail.cs" />
-    <Compile Include="Models\Roles.cs">
-      <DependentUpon>MLMDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Status.cs">
-      <DependentUpon>MLMDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Users.cs">
-      <DependentUpon>MLMDB.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\RESTful_API_DB_Model.cs" />
+    <Compile Include="Models\Roles.cs" />
+    <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Models\VerifiedIdentity.cs" />
-    <Compile Include="Models\ViewUserDetail.cs">
-      <DependentUpon>MLMDB.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\ViewUserDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -318,27 +302,10 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <EntityDeploy Include="Models\MLMDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MLMDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\MLMDB.edmx.diagram">
-      <DependentUpon>MLMDB.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Auth\Views\web.config" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <None Include="Properties\PublishProfiles\RESRful_API_OAuth.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Models\MLMDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MLMDB.Context.cs</LastGenOutput>
-      <DependentUpon>MLMDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\MLMDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MLMDB.edmx</DependentUpon>
-      <LastGenOutput>MLMDB.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -377,6 +344,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708020429304_InitRESTful_API_DB.resx">
+      <DependentUpon>201708020429304_InitRESTful_API_DB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

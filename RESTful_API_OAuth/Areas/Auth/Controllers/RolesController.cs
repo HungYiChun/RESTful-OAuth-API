@@ -16,13 +16,13 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
     /// </summary>
     public class RolesController : ApiController
     {
-        private MLMDBEntities db = new MLMDBEntities();
+        private RESTful_API_DB_Model db = new RESTful_API_DB_Model();
 
         // GET: api/Roles
         /// <summary>
         /// 取得 所有 權限資料 - All Roles Detail.
         /// </summary>
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IQueryable<Roles> GetRoles()
         {
             return db.Roles;
@@ -33,7 +33,7 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         /// 取得 指定 權限資料 - Role Detail.
         /// </summary>
         [ResponseType(typeof(Roles))]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult GetRoles(int id)
         {
             Roles roles = db.Roles.Find(id);
@@ -50,7 +50,7 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         /// 更新 權限資料 - Update Role.
         /// </summary>
         [ResponseType(typeof(Roles))]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult PutRoles(int id, Roles roles)
         {
             if (!ModelState.IsValid)
@@ -89,7 +89,7 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         ///  新增 權限資料 - Create Role.
         /// </summary>
         [ResponseType(typeof(Roles))]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult PostRoles(Roles roles)
         {
             if (!ModelState.IsValid)
@@ -108,7 +108,7 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         /// 刪除 權限資料 - Delete Role.
         /// </summary>
         [ResponseType(typeof(Roles))]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteRoles(int id)
         {
             Roles roles = db.Roles.Find(id);

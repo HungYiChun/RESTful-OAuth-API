@@ -16,13 +16,13 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
     /// </summary>
     public class StatusController : ApiController
     {
-        private MLMDBEntities db = new MLMDBEntities();
+        private RESTful_API_DB_Model db = new RESTful_API_DB_Model();
 
         // GET: api/Status
         /// <summary>
         /// 取得 所有 狀態資料 - All Status Detail.
         /// </summary>
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IQueryable<Status> GetStatus()
         {
             return db.Status;
@@ -33,7 +33,7 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         /// 取得 指定 狀態資料 - Status Detail.
         /// </summary>
         [ResponseType(typeof(Status))]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult GetStatus(int id)
         {
             Status status = db.Status.Find(id);
@@ -50,7 +50,7 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         /// 更新 狀態資料 - Update Status.
         /// </summary>
         [ResponseType(typeof(Status))]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult PutStatus(int id, Status status)
         {
             if (!ModelState.IsValid)
@@ -89,7 +89,7 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         /// 新增 狀態資料 - Create Status.
         /// </summary>
         [ResponseType(typeof(Status))]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult PostStatus(Status status)
         {
             if (!ModelState.IsValid)
@@ -108,7 +108,7 @@ namespace RESTful_API_OAuth.Areas.Auth.Controllers
         /// 刪除 狀態資料 - Delete Status.
         /// </summary>
         [ResponseType(typeof(Status))]
-        [Authorize(Roles = "Root Admin, Admin")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteStatus(int id)
         {
             Status status = db.Status.Find(id);
